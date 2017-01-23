@@ -39,7 +39,7 @@ your password for future access to your pet EC2.
 * Take note of the Public DNS of your newly created EC2. Lets say it's
 * `ec2-12-34-567-890.compute-1.amazonaws.com`
 
-## Deploy code to your pet EC2
+## Connect to your pet EC2
 * Let's log into it: `ssh -v -i ~/.ssh/my_key.pem ec2-user@ec2-12-34-567-890.compute-1.amazonaws.com`
     * Get any warnings?
     * Should we ignore those?
@@ -60,22 +60,37 @@ and
     * gist is that you have full access to do ANYTHING you want without any
     restrictions placed by a platform like Heroku.
 
-* Let's deploy some code by using git. There are other alternatives homework:
+## Setup Helpers
+Add these environment variables to your shell configuration to allow the quick
+access scripts.
+
+These  add ons will allow you to use the ./aws/scripts/connect.sh and
+./aws/scripts/copy.sh scripts to connect and copy files to your EC2.
+
+vim your ~/.bashrc file and add _your_ values for the EC2 public DNS name and
+the path to your key:
+
+```sh
+export AWS_INSTANCE_DNS="ec2-12-34-567-890.compute-1.amazonaws.com"
+export AWS_INSTANCE_KEY_PATH="~/.ssh/key.pem"
+```
+
+## Deploy to your pet EC2
+Let's deploy some code by using git. There are other alternatives in the homework:
     * scp - secure copy
     * Downloading the code from any other location using `curl`
-    * `sudo mkdir -p /webapp/current && sudo chown -R ec2-user /webapp && cd /webapp/current`
-    * Find your favorite rails project and perform `git clone git@github.com:dmitrinesterenko/how-much-brooklyn-can-you-buy.git .`
+* `sudo mkdir -p /webapp/current && sudo chown -R ec2-user /webapp && cd /webapp/current`
+* Find your favorite rails project and perform `git clone git@github.com:dmitrinesterenko/how-much-brooklyn-can-you-buy.git .`
     * Errrr, fix errors, install git: ```yum install git```
         * Did you get an authenticity warning? Why?
-    * Note the below steps are only needed if you are cloning a private project in git or from enterprise git.
-    * Open source and public projects do not need these steps.
+    * Note the below steps are only needed if you are cloning a private project in git or from enterprise git. Open source and public projects do not need these steps.
         * Now you need to make a [trusted key SSH
         * key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) which we will place in git.xogrp.com for your account to allow you to clone here:
             `cd ~/.ssh && ssh-keygen`
             * `eval $(ssh-agent -s)` start the SSH agent who will be able to serve up keys when asked
             * `ssh-add ~/.ssh/id_rsa` and add our new key to it.
         * Upload the public key into github > account > settings > ssh and gpg keys.
-        * Always the public key.
+        * *Only* upload the public key.
         * `cd /webapp/current` and git clone again
 
 * Let's build and launch our app!
@@ -92,8 +107,9 @@ and
       your Ford Focus.
     * `sudo curl --silent --location https://rpm.nodesource.com/setup_7.x | sudo bash -`
     * `sudo yum install -y nodejs`
+    * `bundle exec rails start`
 
-* Now let's get to our app!
+## Now let's get to our app!
     * Remember the Public DNS entry from the first step?
     * Let's use it to access your very own pet.
     * http://ec2-12-34-567-890.compute-1.amazonaws.com:3000
@@ -103,9 +119,6 @@ and
     * What if you picked a "private" subnet? I.e. one that doesn't route the
     traffic through the IGW for the IPs that we are deployed to.
         * How to make a "private" subnet have a routing table that is "public"?
-
-
-
 
 ## Pricing
 http://www.ec2instances.info
