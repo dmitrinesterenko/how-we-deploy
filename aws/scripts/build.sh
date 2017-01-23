@@ -9,6 +9,9 @@ sudo yum -y install \
     libxml* libxslt* \
     postgres-devel postgresql95-devel.x86_64 postgresql95-server.x86_64 \
     ruby-devel
+# We will need a NodeJS environment to support Rail
+sudo curl --silent --location https://rpm.nodesource.com/setup_7.x | sudo bash -
+sudo yum install -y nodejs
 # Now specifics to our applications
 sudo mkdir -p /webapp/current
 # Need to make sure ec2-user has full control
@@ -18,4 +21,5 @@ cd /webapp/current
 #Install 2 gems which are prerequisites for installing other gems.
 gem install bundle io-console
 bundle install
-
+#Start the app
+bundle exec rails start
