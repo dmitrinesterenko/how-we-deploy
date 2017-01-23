@@ -23,6 +23,7 @@ means (it means that things will be more complicated. But there's freedom!)
 * Go through the steps asking the questions and finding the answers to:
     * What is a VPC?
     * What is a subnet? Which one do I choose?
+    * What are [CIDR blocks](https://en.wikipedia.org/wiki/Classless_Inter-Domain_Routing#IPv4_CIDR_blocks)?
     * What is a [route table](http://docs.aws.amazon.com/AmazonVPC/latest/UserGuide/VPC_Route_Tables.html)?
     * What is a security group and what settings are right?
     * Why do we care?
@@ -39,7 +40,7 @@ your password for future access to your pet EC2.
 * `ec2-12-34-567-890.compute-1.amazonaws.com`
 
 ## Deploy code to your pet EC2
-* Let's log into it: `ssh -i ~/.ssh/my_key.pem ec2-user@ec2-12-34-567-890.compute-1.amazonaws.com`
+* Let's log into it: `ssh -v -i ~/.ssh/my_key.pem ec2-user@ec2-12-34-567-890.compute-1.amazonaws.com`
     * Get any warnings?
     * Should we ignore those?
         * No! The idea in preventing man in the middle attacks is to verify
@@ -66,7 +67,7 @@ and
     * Find your favorite rails project and perform `git clone git@github.com:dmitrinesterenko/how-much-brooklyn-can-you-buy.git .`
     * Errrr, fix errors, install git: ```yum install git```
         * Did you get an authenticity warning? Why?
-    * Note the below steps are only needed if you are cloning a private project.
+    * Note the below steps are only needed if you are cloning a private project in git or from enterprise git.
     * Open source and public projects do not need these steps.
         * Now you need to make a [trusted key SSH
         * key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) which we will place in git.xogrp.com for your account to allow you to clone here:
