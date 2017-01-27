@@ -1,5 +1,5 @@
 ### How We Deploy
-Scripts and links to how we deploy starting with the moststartup to the most
+Scripts and links to how we deploy starting with the most startup to the most
 detailed.
 
 ## What's Described?
