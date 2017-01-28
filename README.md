@@ -9,9 +9,11 @@ Scripts and links to how we deploy starting with the most startup to the most
 detailed.
 
 ## Where?
-[Heroku](/1_HEROKU.md) - platform for deploying.
-AWS - infrastructure for deploying.
-Docker - packaging of your environment and application
-Terraform - coding your infrastructure.
+[Heroku](/1_HEROKU.md) is a platform for deploying.
+[AWS](/2_AWS.md) is infrastructure for deploying.
+[Docker](/3_DOCKER.md) is  packaging of your environment and application
+together
+
+Terraform is coding your infrastructure.
 
 
