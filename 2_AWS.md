@@ -16,9 +16,9 @@ means (it means that things will be more complicated. But there's freedom!)
 * Make sure you are logged into this account instead of your team's regular AWS account.
 
 ## Create a pet EC2
-* https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:
+* After logging into our AWS account [create](https://console.aws.amazon.com/ec2/v2/home?region=us-east-1#LaunchInstanceWizard:) and EC2 instance that will be our pet.
 * Choose the Amazon Linux AMI with Hardware Virtual Machine virtualization
-    * This image includes some of the "tools" we need to start: ruby, git, sshd
+    * This image includes some of the "tools" we need to start: sshd and yum for installing more software.
     * Hardware Virtual Machines are able to communicate directly with the hardware.
 * Go through the steps asking the questions and finding the answers to:
     * What is a VPC?
@@ -87,28 +87,34 @@ export AWS_INSTANCE_KEY_PATH="~/.ssh/key.pem"
 ```
 
 ## Deploy to your pet EC2
-Let's deploy some code by using git. There are other alternatives in the homework:
-    * scp - secure copy
-    * Downloading the code from any other location using `curl`
-* `sudo mkdir -p /webapp/current && sudo chown -R ec2-user /webapp && cd /webapp/current`
-* Find your favorite rails project and perform `git clone git@github.com:dmitrinesterenko/how-much-brooklyn-can-you-buy.git .`
-    * Errrr, fix errors, install git: ```yum install git```
-        * Did you get an authenticity warning? Why?
+Let's deploy some code by using git. There are other alternatives in the
+homework.
+* Install git `sudo yum install -y git`
+* Clone our project onto the EC2 using git
+  `git clone git@github.com:dmitrinesterenko/how-we-deploy.git /tmp/how-we-deploy`
+    * Did you get an authenticity warning? Why?
+* `git
     * Note the below steps are only needed if you are cloning a private project in git or from enterprise git. Open source and public projects do not need these steps.
         * Now you need to make a [trusted key SSH
         * key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) which we will place in git.xogrp.com for your account to allow you to clone here:
-            `cd ~/.ssh && ssh-keygen`
-            * `eval $(ssh-agent -s)` start the SSH agent who will be able to serve up keys when asked
-            * `ssh-add ~/.ssh/id_rsa` and add our new key to it.
+            ```
+            ssh-keygen
+            eval $(ssh-agent -s) #start the SSH agent who will be able to serve up keys when asked
+            ssh-add ~/.ssh/id_rsa # and add our new key to it.
+            ```
         * Upload the public key into github > account > settings > ssh and gpg keys.
         * *Only* upload the public key.
-        * `cd /webapp/current` and git clone again
+        * `cd /tmp` and git clone again
 
 * Let's build and launch our app!
-    *  `gem install bundle`
-    * `bundle install`
+    ```
+    mkdir -p /webapp/current
+    cp -R /tmp/how-we-deploy /webapp/current
+    gem install bundle
+    bundle install
+    ```
     *  OOOPS, now we are going to [pre-install a few
-    *  things](http://stackoverflow.com/questions/23184819/rails-new-app-or-rails-h-craps-out-with-cannot-load-such-file-io-console) that will allow us to bundle and build those gems
+       things](http://stackoverflow.com/questions/23184819/rails-new-app-or-rails-h-craps-out-with-cannot-load-such-file-io-console) that will allow us to bundle and build those gems
     * `sudo yum -y install gcc postgres-devel ruby-devel ImageMagick-devel postgresql95-devel.x86_64 postgresql95-server.x86_64 libxml* libxslt*`
     * `gem install io-console`
     * `bundle config build.nokogiri --use-system-libraries`
@@ -130,6 +136,8 @@ Let's deploy some code by using git. There are other alternatives in the homewor
     * `sudo curl --silent --location https://rpm.nodesource.com/setup_7.x | sudo bash -`
     * `sudo yum install -y nodejs`
     * `bundle exec rails start`
+
+* For a quickstart run the build script `/tmp/how-we-deploy/scripts/aws/build.sh` that contains all of the above requirements.
 
 ## Now let's get to our app!
     * Remember the Public DNS entry from the first step?
@@ -154,6 +162,7 @@ http://www.ec2instances.info
 traffic through the internet gateways for the IPs that we are deployed to.
 
 ## Homework
+* Deploy using SCP
 * How would an AMI snapshot help you along?
 * What would a load balancer accomplish? (Hint think about multiple instances,
   think about port 80 or 443.)
