@@ -2,7 +2,7 @@
 # AND more importantly the code image we are using as a base
 # #ubuntu:16.04
 FROM centos:latest
-MAINTAINER "XOIT<xoit.group@xogrp.com"
+MAINTAINER "XOIT<xoit.group@xogrp.com>"
 # User
 USER root
 # Command to run

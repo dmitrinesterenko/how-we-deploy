@@ -2,7 +2,7 @@
 # AND more importantly the code image we are using as a base
 FROM rails:5.0.1
 # Maintainer and the user
-MAINTAINER "XOIT<xoit.group@xogrp.com"
+MAINTAINER "XOIT<xoit.group@xogrp.com>"
 # We are going straight root here, what are the disadvantages? (Hint think about
 # image inheritance)
 USER root
