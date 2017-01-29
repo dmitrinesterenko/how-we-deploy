@@ -10,12 +10,14 @@ rails:5.0.1, or golang, or python.
 Infrastructure as code, manage the dependencies and binaries of your
 applications together with you source code.
 
+Do this once and your team :hearts: you.
+
 ### How?
 Remember how we had to install a bunch of prequisites in the prior excercises?
 
 Well we were doing pretty much what we would when making a Docker image.
 
-Let's look at the two files side by side `aws/scripts/build.sh` and
+Let's look at the two files side by side `scripts/aws/build.sh` and
 `Dockerfile`
 
 Now look at Dockerfile-rails. It's much more succinct and inherits a lot of the
