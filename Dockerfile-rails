@@ -1,0 +1,19 @@
+# Header with common metadata to indicate who this image is maintained by
+# AND more importantly the code image we are using as a base
+FROM rails:5.0.1
+# Maintainer and the user
+MAINTAINER "XOIT<xoit.group@xogrp.com"
+# We are going straight root here, what are the disadvantages? (Hint think about
+# image inheritance)
+USER root
+# Now specifics to our applications
+RUN mkdir -p /webapp/current
+WORKDIR /webapp/current
+# ... How can we get the code into this image?
+ADD . /webapp/current
+# Let's install our gems
+RUN bundle install
+# We will need to access port 3000
+EXPOSE 3000
+# Start the app with the command, this executes when we docker run this image
+CMD hostname -I | xargs bundle exec rails server -p 3000 -b $1
