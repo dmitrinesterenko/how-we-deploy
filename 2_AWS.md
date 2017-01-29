@@ -162,10 +162,7 @@ http://www.ec2instances.info
 traffic through the internet gateways for the IPs that we are deployed to.
 
 ## Homework
-<<<<<<< HEAD
 * Deploy using SCP
-=======
->>>>>>> 29c54442c118969374f54649697b8ed16e717470
 * How would an AMI snapshot help you along?
 * What would a load balancer accomplish? (Hint think about multiple instances,
   think about port 80 or 443.)

@@ -24,14 +24,14 @@ sudo curl --silent --location https://rpm.nodesource.com/setup_7.x | sudo bash -
 sudo yum install -y nodejs
 # Now specifics to our applications
 sudo mkdir -p /webapp/current
-# Copy our app over there
-cp -R /tmp/* /webapp/current
 # Need to make sure ec2-user has full control
 # to write to this directory
 sudo chown -R ec2-user /webapp
+# Copy our app over there
+cp -R /tmp/how-we-deploy/* /webapp/current
 cd /webapp/current
 #Install 2 gems which are prerequisites for installing other gems.
 gem install bundle io-console
 bundle install
 #Start the app
-bundle exec rails s
+hostname -I | xargs bundle exec rails s -p 3000 -b $1
