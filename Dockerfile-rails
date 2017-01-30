@@ -10,7 +10,7 @@ USER root
 RUN mkdir -p /webapp/current
 WORKDIR /webapp/current
 # Get our code into this docker image
-ADD . /webapp/current
+COPY . /webapp/current
 # Install our gems
 RUN bundle install
 # We will need to access port 3000 so let's expose it

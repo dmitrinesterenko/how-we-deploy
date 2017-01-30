@@ -2,7 +2,7 @@
 # AND more importantly the code image we are using as a base
 # #ubuntu:16.04
 FROM centos:latest
-MAINTAINER "XOIT<xoit.group@xogrp.com"
+MAINTAINER "XOIT<xoit.group@xogrp.com>"
 # Metadata for user and directories
 USER root
 # Build your prerequisites so that you can re-do this again and again.
