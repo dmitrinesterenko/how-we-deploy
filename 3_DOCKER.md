@@ -68,11 +68,10 @@ docker-machine create --driver amazonec2 \
 The above script is located in ./scripts/docker/create.sh where it is easier to
 modify the values. Update the values for the subnet and vpc to match your own
 and then execute the shell script: `./scripts/docker/create.sh awsXY` where XY
-is your own unique number.
+is your own unique number. Details of the options are [here](https://docs.docker.com/machine/drivers/aws/)
 
 This will create a new EC2 instance using the docker-machine commands. Remember
 the number you have chosen for your instance.
-
 
 After your instance is created you can:
   * `docker-machine ssh awsXY` SSH into it.
@@ -82,7 +81,8 @@ instances. Share this folder with a collegue and they will have access to
 your instances. Share this with a nefarios Count Olaf and he will have
 access to your instances.
         * `rm -rf` any of those machines you do not want to have a connection
-to. Remember you also need to delete them from AWS!
+to. Remember you also need to delete them from AWS! After you delete the folder
+you can no longer connect to them.
   * `./scripts/docker/build.sh` to build your image directly on the remote
   machine.
   * `./scripts/docker/start.sh` to start your application on the remote machine
@@ -97,5 +97,6 @@ either the AWS console or from `docker-machine ls`
 * What else can you do with docker-machine?
 * How can you make a collection of docker-machines?
 * How would you launch new versions of your application?
+
 
 
