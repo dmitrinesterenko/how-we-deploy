@@ -74,20 +74,6 @@ and
 	restrictions placed by a platform like Heroku.
 	* Think about running a video game server, math algorithms.
 
-## Setup Helpers
-Add these environment variables to your shell configuration to allow the quick
-access scripts.
-
-edit your ~/.bashrc file and add _your_ values for the EC2 public DNS name and
-the path to your key:
-
-```sh
-export AWS_INSTANCE_DNS="ec2-12-34-567-890.compute-1.amazonaws.com"
-export AWS_INSTANCE_KEY_PATH="~/.ssh/key.pem"
-```
-These additions will allow you to use the scripts in `./aws/scripts/connect.sh` and
-`./aws/scripts/copy.sh` scripts to connect and copy files to your EC2.
-
 
 ## Deploy to your pet EC2
 Let's deploy some code by using git. There are other alternatives in the
@@ -96,7 +82,6 @@ homework.
 * Clone our project onto the EC2 using git
   `git clone git@github.com:dmitrinesterenko/how-we-deploy.git /tmp/how-we-deploy`
 	* Did you get an authenticity warning? Why?
-* `git
 	* Now you need to make a [trusted key SSH
 	* key](https://help.github.com/articles/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent/) which we will place in git.xogrp.com for your account to allow you to clone here:
 	```
@@ -104,9 +89,11 @@ homework.
 	eval $(ssh-agent -s) #start the SSH agent who will be able to serve up keys when asked
 	ssh-add ~/.ssh/id_rsa # and add our new key to it.
 	```
-	* Upload the public key into github > account > settings > ssh and gpg keys.
+	* Upload the public key into git.xogrp.com > account > settings > ssh and gpg keys.
 	* *Only* upload the public key.
 	* run the git clone command again
+    * It worked because you are already members of a team allowed access to the
+    repository that you are cloning.
 
 * Let's build and launch our app!
 	```
@@ -117,20 +104,23 @@ homework.
 	```
 	*  OOOPS, now we are going to [pre-install a few
 	   things](http://stackoverflow.com/questions/23184819/rails-new-app-or-rails-h-craps-out-with-cannot-load-such-file-io-console) that will allow us to bundle and build those gems
-	* `sudo yum -y install gcc postgres-devel ruby-devel ImageMagick-devel postgresql95-devel.x86_64 postgresql95-server.x86_64 libxml* libxslt*`
-	* `gem install io-console`
-	* `bundle config build.nokogiri --use-system-libraries`
-	* Install a ruby version manager
-	  ```
-	curl -sSL https://rvm.io/mpapis.asc | gpg --import -
-	curl -L get.rvm.io | bash -s stable
-	source ~/.profile
-	rvm reload
-	rvm requirements run
-	# Setup Ruby 2.2.6 as the default Ruby
-	rvm install 2.2.6
-	rvm use 2.2.6 --default
-	  ```
+	   ```
+       sudo yum -y install gcc postgres-devel ImageMagick-devel postgresql95-devel.x86_64 postgresql95-server.x86_64 libxml* libxslt*
+	   gem install io-console
+	   bundle config build.nokogiri --use-system-libraries
+       ```
+	* Install a ruby version manager here we will use RVM
+	   ```
+       curl -sSL https://rvm.io/mpapis.asc | gpg --import -
+       curl -L get.rvm.io | bash -s stable
+       source ~/.profile
+       rvm reload
+       rvm requirements run
+       # Setup Ruby 2.2.6 as the default Ruby
+       rvm install 2.2.6
+       rvm use 2.2.6 --default
+	   ```
+    * Now `bundle install`
 	* `bundle exec rails s`
 	* OOOPS, we need a [Node JS](https://nodejs.org/en/download/package-manager/) environment ...because it's a Rails app. Cue the
 	  jokes about dependency between languages: it's like needing a helicopter to drive
@@ -168,7 +158,7 @@ http://www.ec2instances.info
 traffic through the internet gateways for the IPs that we are deployed to.
 
 ## Homework
-* Deploy your code using the `scp` command
+* Deploy your code using the `scp` command (check out Setup Helpers at the bottom)
 * How would an AMI snapshot help?
 * What would a load balancer accomplish? (Hint think about multiple instances,
   think about port 80 or 443.)
@@ -194,3 +184,16 @@ sending requests to public IPs)
 	  and [this](https://console.aws.amazon.com/vpc/home?region=us-east-1#routetables:filter=rtb-ba5d47d8)?
 * What is a security group and what settings are right?
 
+## Setup Helpers
+Add these environment variables to your shell configuration to allow the quick
+access scripts.
+
+edit your ~/.bashrc file and add _your_ values for the EC2 public DNS name and
+the path to your key:
+
+```sh
+export AWS_INSTANCE_DNS="ec2-12-34-567-890.compute-1.amazonaws.com"
+export AWS_INSTANCE_KEY_PATH="~/.ssh/key.pem"
+```
+These additions will allow you to use the scripts in `./aws/scripts/connect.sh` and
+`./aws/scripts/copy.sh` scripts to connect and copy files to your EC2.
