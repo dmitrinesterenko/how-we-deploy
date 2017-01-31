@@ -1,6 +1,6 @@
 class GifmeController < ApplicationController
     def view
-       @gif = GifmeHelper.gif params[:word]
+       @gifs = GifmeHelper.gif params[:words]
        render "index"
     end
 end
