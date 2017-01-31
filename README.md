@@ -1,11 +1,11 @@
 ### Why?
-Gifer is a world changing app that shows you a Gif on a particular subject.
-Since it is going to change the world (of Gifing on a particular subject) we should learn how two deploy it to
+Gifer is a world changing app that shows you a sentence as a GiF.
+Since it is going to change the world (of Gifing a sentence) we should learn how to deploy it to
 production quickly and to be able to scale it as millions of people will want to
 Gif-about it.
 
 ### How We Deploy?
-Scripts and links to how we deploy starting with the most startup to the most
+Scripts and links to how we deploy starting with the most startup-like to the most
 detailed.
 
 ## Where?
@@ -16,4 +16,5 @@ together
 
 Terraform is coding your infrastructure.
 
-
+## Running after deployment
+`http://your.ip.domain:3000/how%20we%20deploy`

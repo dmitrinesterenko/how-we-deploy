@@ -1,1 +1,3 @@
-<img src="<%= @gif %>"/>
+<% @gifs.each do |gif| %>
+    <img src="<%= gif %>"/>
+<% end %>
