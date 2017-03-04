@@ -1,7 +1,8 @@
 # Deploy your code with git
 1. Create an EC2 instance using the [1_AWS.md] tutorial, we will be deploying our code to it.
 2. Write down it's Public DNS hostname. 
-###Server Side Steps
+
+### Server Side Steps
 2. Set up our server to be a git-server by following the instructions [here](https://git-scm.com/book/en/v1/Git-on-the-Server-Setting-Up-the-Server)
     * Add one of your public keys to the list of authorized keys by 
     `me@local cat ~/.ssh/id_rsa.pub` and then adding the value you see to the list of `git@server ~/.ssh/authorized_keys`
