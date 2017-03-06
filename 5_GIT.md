@@ -33,6 +33,9 @@ Now you have a place where your code will be dropped.
    * `cd /webapp` && `git clone /webapp/deploy.git /webapp/current`
    * `cd /webapp/current`
    * Tadah! Your application is now here.
+ 
+### Refinements
+   * [Use](http://toroid.org/git-website-howto) a hooks/post-receive hook to update the working tree so that your website is up tod date for you whenever you push.
 
 ### Troubleshooting
 The most time is spent understanding the SSH magic and how git uses it. Set yourself up for success by adding extreme debugging for your SSH connection.
