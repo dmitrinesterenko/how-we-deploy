@@ -13,6 +13,7 @@ detailed.
 [AWS](/2_AWS.md) is infrastructure for deploying.
 [Docker](/3_DOCKER.md) is  packaging of your environment and application
 together
+[Git](/5_GIT.md) allows you to quickly start deploying your code to your server
 
 Terraform is coding your infrastructure.
 
