@@ -8,12 +8,12 @@ Gif-about it.
 Scripts and links to how we deploy starting with the most startup-like to the most
 detailed.
 
-## Where?
-[Heroku](/1_HEROKU.md) is a platform for deploying.
-[AWS](/2_AWS.md) is infrastructure for deploying.
-[Docker](/3_DOCKER.md) is  packaging of your environment and application
+## Where to?
+* [Heroku](/1_HEROKU.md) is a platform for deploying.
+* [AWS](/2_AWS.md) is infrastructure for deploying.
+* [Docker](/3_DOCKER.md) is  packaging of your environment and application
 together
-[Git](/5_GIT.md) allows you to quickly start deploying your code to your server
+* [Git](/5_GIT.md) allows you to quickly start deploying your code to your server
 
 Terraform is coding your infrastructure.
 
