@@ -22,7 +22,7 @@ Now you have a place where your code will be dropped.
 
 5. On your me@local cd to the project you wish to deploy. I assume you have such a project and that it is already in github.
 6. Add a new remote for git. I call mine deploy because this is it's purpose. Heroku for example uses "heroku" to achieve the same.
-   * `git remote add deploy git@ec2-107-23-159-13.compute-1.amazonaws.com:/webapp/deploy.git`
+   * `git remote add deploy git@ec2-123-45-678-90.compute-1.amazonaws.com:/webapp/deploy.git`
    * Note the path /webapp/deploy.git vs webapp/deploy.git matters!. Think of it exactly as you do about directory structures on your local
    computer.
 7. Let's deploy master! `git push deploy master`
